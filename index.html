@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAMDA Pro 과정 - AI 활용 핵심인재 모집</title>
+
+    <!-- Pretendard Font -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS Animation -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
+    <style>
+        :root {
+            --primary: #238BCB;
+            --dark-navy: #04243C;
+            --light-bg: #F0F7FD;
+            --white: #FFFFFF;
+            --text-dark: #333333;
+            --text-gray: #666666;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: var(--white);
+        }
+
+        /* Particles Background */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('wrks-17699172-a121-40f5-bf2f-7f0447d77c2e.png') center center / cover no-repeat fixed,
+                        linear-gradient(135deg, rgba(35,139,203,0.9) 0%, rgba(4,36,60,0.95) 100%);
+            background-blend-mode: overlay;
+            color: var(--white);
+            text-align: center;
+            padding: 6rem 2rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+            background: rgba(4, 36, 60, 0.75);
+            backdrop-filter: blur(20px);
+            padding: 4rem 3rem;
+            border-radius: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+            animation: fadeInUp 1s ease;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            line-height: 1.1;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero .subtitle {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            animation: fadeInUp 1s ease 0.2s backwards;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 10px rgba(79, 172, 254, 0.3);
+        }
+
+        .hero .tagline {
+            font-size: 1.375rem;
+            opacity: 1;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.4s backwards;
+            font-weight: 400;
+            line-height: 1.6;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.125rem;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+        }
+
+        /* SAMDA Cards with 3D effect */
+        .samda-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            perspective: 1000px;
+        }
+
+        .samda-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            transition: all 0.5s ease;
+            text-align: center;
+            border: 2px solid transparent;
+            transform-style: preserve-3d;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .samda-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(35,139,203,0.1), rgba(102,126,234,0.1));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .samda-card:hover::before {
+            opacity: 1;
+        }
+
+        .samda-card:hover {
+            transform: translateY(-15px) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border-color: var(--primary);
+        }
+
+        .samda-letter {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .samda-card:hover .samda-letter {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .samda-english {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--dark-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .samda-korean {
+            font-size: 0.875rem;
+            color: var(--text-gray);
+            line-height: 1.5;
+        }
+
+        /* Overview Section with animated icons */
+        .overview {
+            background: var(--light-bg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .overview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.3" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,112C1248,107,1344,117,1392,122.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+            opacity: 0.5;
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .overview-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .overview-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, rgba(35,139,203,0.1), transparent 30%);
+            animation: rotate 4s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        .overview-card:hover::before {
+            opacity: 1;
+        }
+
+        .overview-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .overview-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), #667eea);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--white);
+            position: relative;
+            z-index: 1;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .overview-card:hover .overview-icon {
+            animation: spin 0.6s ease;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .overview-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark-navy);
+            position: relative;
+            z-index: 1;
+        }
+
+        .overview-content {
+            color: var(--text-gray);
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Interactive Curriculum Timeline */
+        .curriculum-timeline {
+            max-width: 900px;
+            margin: 3rem auto;
+            position: relative;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-date {
+            min-width: 120px;
+            text-align: right;
+            padding-top: 0.5rem;
+        }
+
+        .day-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .date-text {
+            font-size: 0.875rem;
+            color: var(--text-gray);
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, var(--primary), #667eea);
+            border-radius: 50%;
+            position: relative;
+            margin-top: 0.75rem;
+            flex-shrink: 0;
+            box-shadow: 0 0 0 4px var(--white), 0 0 20px rgba(35,139,203,0.3);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { box-shadow: 0 0 0 4px var(--white), 0 0 20px rgba(35,139,203,0.3); }
+            50% { box-shadow: 0 0 0 8px var(--white), 0 0 30px rgba(35,139,203,0.6); }
+        }
+
+        .timeline-dot::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: calc(100% + 60px);
+            background: linear-gradient(180deg, var(--primary), transparent);
+            opacity: 0.3;
+        }
+
+        .timeline-item:last-child .timeline-dot::before {
+            display: none;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .timeline-content:hover {
+            border-left-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+            transform: translateX(10px);
+        }
+
+        .session {
+            margin-bottom: 1.5rem;
+        }
+
+        .session:last-child {
+            margin-bottom: 0;
+        }
+
+        .session-time {
+            font-size: 0.875rem;
+            color: var(--white);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: linear-gradient(135deg, var(--primary), #667eea);
+            border-radius: 20px;
+        }
+
+        .session-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--dark-navy);
+        }
+
+        /* Certification Cards with flip effect */
+        .certification {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .cert-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        .cert-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+        }
+
+        .cert-card:hover::after {
+            left: 100%;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .cert-header {
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cert-card.lite .cert-header {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+        }
+
+        .cert-card.pro .cert-header {
+            background: linear-gradient(135deg, var(--primary), #667eea);
+        }
+
+        .cert-card.specialist .cert-header {
+            background: linear-gradient(135deg, #FF6B6B, #d63031);
+        }
+
+        .cert-badge {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .cert-name {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-level {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .cert-body {
+            padding: 2rem;
+        }
+
+        .cert-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .cert-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .cert-section-title {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cert-section-content {
+            font-size: 0.9375rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* Vibe Coding Showcase Section */
+        .vibe-showcase {
+            background: linear-gradient(135deg, var(--dark-navy) 0%, #1a1a2e 100%);
+            color: var(--white);
+            padding: 5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vibe-showcase::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23238BCB" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,112C1248,107,1344,117,1392,122.7L1440,128L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>') no-repeat top;
+            background-size: cover;
+        }
+
+        .vibe-showcase .section-title {
+            color: var(--white);
+            background: linear-gradient(135deg, #fff, #4facfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .vibe-showcase .section-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(35, 139, 203, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: wiggle 2s ease-in-out infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--white);
+        }
+
+        .feature-description {
+            font-size: 0.9375rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--dark-navy) 0%, #1a1a2e 100%);
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23238BCB" fill-opacity="0.05" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,112C1248,107,1344,117,1392,122.7L1440,128L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>') no-repeat top;
+            background-size: cover;
+        }
+
+        footer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary), #667eea, var(--primary), transparent);
+            box-shadow: 0 0 20px rgba(35, 139, 203, 0.5);
+        }
+
+        footer .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .footer-highlight {
+            background: rgba(35, 139, 203, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(35, 139, 203, 0.3);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-highlight::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, rgba(35,139,203,0.1), transparent 30%);
+            animation: rotate 8s linear infinite;
+        }
+
+        .footer-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .footer-ai {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff, #4facfe, #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-description {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), #667eea);
+            color: var(--white);
+            padding: 0.75rem 2rem;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(35, 139, 203, 0.4);
+            position: relative;
+            z-index: 1;
+            margin-bottom: 2rem;
+        }
+
+        .footer-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(35, 139, 203, 0.6);
+        }
+
+        .footer-team {
+            font-size: 1.125rem;
+            opacity: 0.8;
+            font-weight: 500;
+        }
+
+        .footer-divider {
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            margin: 2rem auto;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), #667eea);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(35, 139, 203, 0.4);
+            z-index: 999;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(35, 139, 203, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: var(--shadow);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-content {
+                padding: 2.5rem 1.5rem;
+                border-radius: 20px;
+            }
+
+            .hero h1 {
+                font-size: 2.25rem;
+                letter-spacing: -1px;
+            }
+
+            .hero .subtitle {
+                font-size: 1.5rem;
+            }
+
+            .hero .tagline {
+                font-size: 1rem;
+            }
+
+            .countdown {
+                padding: 1.5rem 2rem;
+            }
+
+            .countdown-timer {
+                gap: 1rem;
+            }
+
+            .countdown-value {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .samda-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .timeline-date {
+                text-align: left;
+            }
+
+            .timeline-dot {
+                display: none;
+            }
+
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .hero-content {
+                padding: 3rem 2rem;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero .subtitle {
+                font-size: 2rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.125rem;
+            }
+
+            .samda-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <div class="logo">SAMDA Pro</div>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul id="nav-menu">
+                <li><a href="#samda" onclick="closeMenu()">SAMDA 크루</a></li>
+                <li><a href="#overview" onclick="closeMenu()">교육개요</a></li>
+                <li><a href="#curriculum" onclick="closeMenu()">커리큘럼</a></li>
+                <li><a href="#certification" onclick="closeMenu()">인증단계</a></li>
+                <li><a href="#vibe" onclick="closeMenu()">바이브코딩</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 data-aos="fade-up">AI 활용 핵심인재 모집</h1>
+            <p class="subtitle" data-aos="fade-up" data-aos-delay="100">SAMDA Pro 과정</p>
+            <p class="tagline" data-aos="fade-up" data-aos-delay="200">코딩 없이 AI로 업무 혁신하는 시민 개발자 양성 프로그램</p>
+        </div>
+    </section>
+
+    <!-- SAMDA Section -->
+    <section id="samda">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">SAMDA 크루</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                디지털 전환 시대, 업무 혁신을 이끄는 5가지 핵심 가치
+            </p>
+
+            <div class="samda-grid">
+                <div class="samda-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="samda-letter">S</div>
+                    <div class="samda-english">Smart-work</div>
+                    <div class="samda-korean">전문지식 없이도 AI 도구를 활용한<br>스마트 업무 환경 구현</div>
+                </div>
+
+                <div class="samda-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="samda-letter">A</div>
+                    <div class="samda-english">AI-native</div>
+                    <div class="samda-korean">단순 도입이 아닌<br>실질적 지능형 업무 방식 전환</div>
+                </div>
+
+                <div class="samda-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="samda-letter">M</div>
+                    <div class="samda-english">Movement</div>
+                    <div class="samda-korean">자발적이고 지속적인<br>전사 디지털 혁신 확산</div>
+                </div>
+
+                <div class="samda-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="samda-letter">D</div>
+                    <div class="samda-english">Digital Transformation</div>
+                    <div class="samda-korean">프로세스와 마인드셋 변화를 통한<br>조직 혁신</div>
+                </div>
+
+                <div class="samda-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="samda-letter">A</div>
+                    <div class="samda-english">Action-first</div>
+                    <div class="samda-korean">문제를 직접 발견하고 실행하는<br>현장 실무 역량 강화</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview" class="overview">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">교육 개요</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                AI 활용 핵심인재 SAMDA 크루 양성 프로그램
+            </p>
+
+            <div class="overview-grid">
+                <div class="overview-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="overview-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3 class="overview-title">교육 기간</h3>
+                    <div class="overview-content">
+                        <strong>총 4일</strong><br>
+                        Day 1: 2026.04.28 (화)<br>
+                        Day 2-4: 2026.05.13-15 (수-금)
+                    </div>
+                </div>
+
+                <div class="overview-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="overview-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 class="overview-title">교육 장소</h3>
+                    <div class="overview-content">
+                        <strong>호은아트센터</strong><br>
+                        제주특별자치도 제주시<br>
+                        월평9길 2-19(월평동)
+                    </div>
+                </div>
+
+                <div class="overview-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="overview-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="overview-title">교육 대상</h3>
+                    <div class="overview-content">
+                        본부별 최소 2명 이상<br>
+                        (관리자급 1명 이상 포함)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Curriculum Section -->
+    <section id="curriculum">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">4일 커리큘럼</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                문제 발견부터 AI 기반 서비스 개발까지
+            </p>
+
+            <div class="curriculum-timeline">
+                <div class="timeline-item" data-aos="fade-right" data-aos-delay="100">
+                    <div class="timeline-date">
+                        <div class="day-number">Day 1</div>
+                        <div class="date-text">4월 28일 (화)</div>
+                    </div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="session">
+                            <div class="session-time">오전</div>
+                            <div class="session-title">SAMDA 크루 소개 및 오리엔테이션</div>
+                        </div>
+                        <div class="session">
+                            <div class="session-time">오후</div>
+                            <div class="session-title">문제 발견 워크숍 (주제 선정)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-right" data-aos-delay="200">
+                    <div class="timeline-date">
+                        <div class="day-number">Day 2</div>
+                        <div class="date-text">5월 13일 (수)</div>
+                    </div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="session">
+                            <div class="session-time">오전</div>
+                            <div class="session-title">AI 코딩 도구 개념 이해 및 기본 사용법 습득</div>
+                        </div>
+                        <div class="session">
+                            <div class="session-time">오후</div>
+                            <div class="session-title">AI와 효과적으로 소통하기: 프롬프트 작성법</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-right" data-aos-delay="300">
+                    <div class="timeline-date">
+                        <div class="day-number">Day 3</div>
+                        <div class="date-text">5월 14일 (목)</div>
+                    </div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="session">
+                            <div class="session-time">오전</div>
+                            <div class="session-title">서비스 아이디어 구체화 및 요구사항 명세서 작성</div>
+                        </div>
+                        <div class="session">
+                            <div class="session-time">오후</div>
+                            <div class="session-title">AI 기반 서비스 개발-1</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-right" data-aos-delay="400">
+                    <div class="timeline-date">
+                        <div class="day-number">Day 4</div>
+                        <div class="date-text">5월 15일 (금)</div>
+                    </div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="session">
+                            <div class="session-time">오전</div>
+                            <div class="session-title">AI 기반 서비스 개발-2</div>
+                        </div>
+                        <div class="session">
+                            <div class="session-time">오후</div>
+                            <div class="session-title">최종 프로젝트 발표 및 피드백</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certification Section -->
+    <section id="certification" class="certification">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">인증 단계</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                Lite → Pro → Specialist 성장 로드맵
+            </p>
+
+            <div class="cert-grid">
+                <div class="cert-card lite" data-aos="flip-left" data-aos-delay="100">
+                    <div class="cert-header">
+                        <div class="cert-badge">🌱</div>
+                        <h3 class="cert-name">SAMDA Lite</h3>
+                        <p class="cert-level">입문 단계 - Light Start</p>
+                    </div>
+                    <div class="cert-body">
+                        <div class="cert-section">
+                            <div class="cert-section-title">완수 요건</div>
+                            <div class="cert-section-content">
+                                AI 기초 이해 및 도구 사용 교육 이수, AI 업무 적용 및 디지털 프로세스 필요성 인식
+                            </div>
+                        </div>
+                        <div class="cert-section">
+                            <div class="cert-section-title">핵심 역량</div>
+                            <div class="cert-section-content">
+                                생성형 AI 활용 (챗봇), 고급 엑셀/한글 기능
+                            </div>
+                        </div>
+                        <div class="cert-section">
+                            <div class="cert-section-title">목표</div>
+                            <div class="cert-section-content">
+                                AI 도구로 일상 업무를 더 스마트하게 처리
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cert-card pro" data-aos="flip-left" data-aos-delay="200">
+                    <div class="cert-header">
+                        <div class="cert-badge">⚡</div>
+                        <h3 class="cert-name">SAMDA Pro</h3>
+                        <p class="cert-level">문제 해결자 - Expert</p>
+                    </div>
+                    <div class="cert-body">
+                        <div class="cert-section">
+                            <div class="cert-section-title">완수 요건</div>
+                            <div class="cert-section-content">
+                                AI 도구 고급 교육 이수 + 실제 업무 자동화/디지털 혁신 프로젝트 1건 이상 개발
+                            </div>
+                        </div>
+                        <div class="cert-section">
+                            <div class="cert-section-title">핵심 역량</div>
+                            <div class="cert-section-content">
+                                AI 코딩 도구 활용 서비스 개발, 업무 프로세스 분석 및 개선 역량
+                            </div>
+                        </div>
+                        <div class="cert-section">
+                            <div class="cert-section-title">목표</div>
+                            <div class="cert-section-content">
+                                코딩 없이 부서 업무 문제를 직접 해결하는 현장 문제 해결자
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cert-card specialist" data-aos="flip-left" data-aos-delay="300">
+                    <div class="cert-header">
+                        <div class="cert-badge">🏆</div>
+                        <h3 class="cert-name">SAMDA Specialist</h3>
+                        <p class="cert-level">마스터 - Leader</p>
+                    </div>
+                    <div class="cert-body">
+                        <div class="cert-section">
+                            <div class="cert-section-title">완수 요건</div>
+                            <div class="cert-section-content">
+                                AI 전문가 과정 이수 + SAMDA 크루 1명 이상 멘토링
+                            </div>
+                        </div>
+                        <div class="cert-section">
+                            <div class="cert-section-title">핵심 역량</div>
+                            <div class="cert-section-content">
+                                디지털 전환 전략 수립, 전사 업무 프로세스 혁신 설계, SAMDA 크루 멘토링
+                            </div>
+                        </div>
+                        <div class="cert-section">
+                            <div class="cert-section-title">목표</div>
+                            <div class="cert-section-content">
+                                JPDC의 디지털 전환과 조직 혁신을 이끄는 디지털 리더
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vibe Coding Showcase -->
+    <section id="vibe" class="vibe-showcase">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">바이브코딩으로 가능한 것들</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                이 페이지도 바이브코딩으로 제작되었습니다! AI가 만들어낸 놀라운 기능들을 경험해보세요
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="feature-icon">🎨</div>
+                    <h3 class="feature-title">화려한 디자인</h3>
+                    <p class="feature-description">그라디언트, 애니메이션, 3D 효과까지 모던한 디자인을 AI가 자동 구현</p>
+                </div>
+
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="feature-icon">⏱️</div>
+                    <h3 class="feature-title">실시간 카운트다운</h3>
+                    <p class="feature-description">JavaScript로 구현된 실시간 타이머와 동적 업데이트 기능</p>
+                </div>
+
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">완벽한 반응형</h3>
+                    <p class="feature-description">모바일, 태블릿, 데스크톱 모든 기기에서 최적화된 UI/UX</p>
+                </div>
+
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="feature-icon">✨</div>
+                    <h3 class="feature-title">스크롤 애니메이션</h3>
+                    <p class="feature-description">AOS 라이브러리를 활용한 부드럽고 세련된 페이드인 효과</p>
+                </div>
+
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="feature-icon">🎭</div>
+                    <h3 class="feature-title">인터랙티브 요소</h3>
+                    <p class="feature-description">호버 효과, 3D 회전, 펄스 애니메이션 등 다양한 상호작용</p>
+                </div>
+
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="feature-icon">🚀</div>
+                    <h3 class="feature-title">단일 파일 구현</h3>
+                    <p class="feature-description">HTML/CSS/JS 모두 하나의 파일로 통합된 완벽한 랜딩 페이지</p>
+                </div>
+
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="700">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">고정 네비게이션</h3>
+                    <p class="feature-description">스크롤 시 자동으로 변화하는 스마트 네비게이션 바</p>
+                </div>
+
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="800">
+                    <div class="feature-title">🌈</div>
+                    <h3 class="feature-title">다양한 시각 효과</h3>
+                    <p class="feature-description">그라디언트 텍스트, 빛나는 효과, 배경 패턴 등 풍부한 시각적 요소</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-highlight" data-aos="fade-up">
+                <div class="footer-icon">🤖✨</div>
+                <h3 class="footer-ai">본 페이지는 AI(바이브코딩)를 활용하여 제작되었습니다</h3>
+                <p class="footer-description">
+                    코딩 없이 AI와 대화만으로 이런 페이지를 만들 수 있습니다<br>
+                    화려한 디자인, 인터랙티브 애니메이션, 반응형 레이아웃까지<br>
+                    모두 자연어 대화로 구현 가능합니다
+                </p>
+                <div class="footer-cta">바이브코딩의 놀라운 가능성을 경험하세요</div>
+            </div>
+
+            <div class="footer-divider"></div>
+
+            <p class="footer-team">제주특별자치도개발공사 AI디지털혁신팀</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to top button -->
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            const scrollTop = document.getElementById('scrollTop');
+
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Show/hide scroll to top button
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            document.getElementById('nav-menu').classList.toggle('active');
+        }
+
+        function closeMenu() {
+            document.getElementById('nav-menu').classList.remove('active');
+        }
+
+        // Typing effect for feature cards on hover
+        const featureCards = document.querySelectorAll('.feature-card');
+        featureCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.05)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
